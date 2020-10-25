@@ -957,7 +957,7 @@ def message_shortcut_handler(ack: Ack):
     ack()
 
 
-def message_shortcut_handler_lazy(body: dict, context: BoltContext, client: WebClient):
+def message_shortcut_handler_lazy(body: dict, client: WebClient):
     client.views_open(
         trigger_id=body["trigger_id"],
         view={
@@ -1004,11 +1004,13 @@ def handler(ack, body, client):
         },
     )
     team_id = body["team"]["id"]
-    app_id = client.bots_info(bot=context.bot_id)["bot"]["app_id"]
+    # https://github.com/slackapi/bolt-python/pull/126
+    app_id = body["message"]["bot_profile"]["app_id"]
     client.chat_postMessage(
         channel=body["channel"]["id"],
         text=f"ここでは、二種類のショートカットの実行を学びました。<slack://app?team={team_id}&id={app_id}|ホームタブに戻って>、学習の続きをみていきましょう。",
     )
+
 
 # --------------------------------------------
 # page 5

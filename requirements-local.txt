@@ -1,0 +1,3 @@
+slack-bolt>=0.9.4b0
+boto3
+Flask

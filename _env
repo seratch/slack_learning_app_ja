@@ -1,0 +1,9 @@
+# https://api.slack.com/apps/{api_app_id}
+export SLACK_SIGNING_SECRET=
+export SLACK_CLIENT_ID=
+export SLACK_CLIENT_SECRET=
+export SLACK_SCOPES=channels:join,channels:manage,channels:read,chat:write,chat:write.public,commands,im:write,users:read
+# AWS API Gateway + Lambda で動かす場合のみ
+export SLACK_INSTALLATION_S3_BUCKET_NAME=
+export SLACK_STATE_S3_BUCKET_NAME=
+export SLACK_LAMBDA_PATH=/default/slack_learning_app_ja

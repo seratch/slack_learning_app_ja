@@ -693,7 +693,7 @@ def page2_modal_submission(ack: Ack, view: dict):
                     "type": "context",
                     "elements": [
                         {
-                            "type": "plain_text",
+                            "type": "mrkdwn",
                             "text": f"担当者: {f'<@{assignee}>' if assignee else '未定'}",
                         },
                         {"type": "plain_text", "text": f"プライオリティ: {priority or ''}"},

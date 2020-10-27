@@ -763,12 +763,29 @@ def page4_create_channel_lazy(
     client.views_open(trigger_id=body["trigger_id"], view=modal)
 
 
-def page4_create_channel_submission(
-    ack: Ack, view: dict, context: BoltContext, client: WebClient
+def page4_create_channel_submission(ack: Ack):
+    ack(
+        response_action="update",
+        view={
+            "type": "modal",
+            "callback_id": "page4_create_channel_submission",
+            "title": {"type": "plain_text", "text": "チャンネル作成中"},
+            "close": {"type": "plain_text", "text": "閉じる"},
+            "blocks": [
+                {
+                    "type": "section",
+                    "text": {"type": "mrkdwn", "text": "少々お待ちください... :zzz:"},
+                },
+            ],
+        },
+    )
+
+
+def page4_create_channel_submission_lazy(
+    view: dict, context: BoltContext, client: WebClient
 ):
     values = view.get("state", {}).get("values", {})
     channel_name = values.get("channel_name", {}).get("input", {}).get("value")
-    errors = {}
     channel_id = ""
     try:
         channel_creation = client.conversations_create(name=channel_name)
@@ -777,17 +794,30 @@ def page4_create_channel_submission(
         client.conversations_invite(channel=channel_id, users=[context.user_id])
     except SlackApiError as e:
         error = e.response["error"]
+        error_message = f"チャンネル作成中にエラーが発生しました ({error}) :bow:"
         if error == "name_taken":
-            errors["channel_name"] = f"このチャンネル名はすでに存在しています"
+            error_message = f"このチャンネル名はすでに存在しています :bow:"
         elif error == "invalid_name_specials":
-            errors["channel_name"] = f"チャンネル名にアルファベット大文字や特殊文字などは使えません"
-        else:
-            errors["channel_name"] = f"チャンネル作成中にエラーが発生しました ({error})"
-        if len(errors) > 0:
-            return ack(response_action="errors", errors=errors)
+            error_message = f"チャンネル名にアルファベット大文字や特殊文字などは使えません :bow:"
+        client.views_update(
+            view_id=view["id"],
+            view={
+                "type": "modal",
+                "callback_id": "page2_modal_submission_result",
+                "title": {"type": "plain_text", "text": "チャンネル作成エラー"},
+                "close": {"type": "plain_text", "text": "閉じる"},
+                "blocks": [
+                    {
+                        "type": "section",
+                        "text": {"type": "mrkdwn", "text": error_message},
+                    }
+                ],
+            }
+        )
+        return
 
-    ack(
-        response_action="update",
+    client.views_update(
+        view_id=view["id"],
         view={
             "type": "modal",
             "callback_id": "page2_modal_submission_result",
@@ -806,7 +836,7 @@ def page4_create_channel_submission(
                     },
                 },
             ],
-        },
+        }
     )
 
 

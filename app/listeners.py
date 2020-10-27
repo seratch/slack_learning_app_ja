@@ -21,6 +21,7 @@ from app.tutorials import (
     page4_create_channel,
     page4_create_channel_lazy,
     page4_create_channel_submission,
+    page4_create_channel_submission_lazy,
     page4_create_channel_setup,
     page4_create_channel_setup_lazy,
     global_shortcut_handler,
@@ -67,7 +68,8 @@ def register_listeners(app: App):
         ack=page4_create_channel, lazy=[page4_create_channel_lazy]
     )
 
-    app.view("page4_create_channel_submission")(page4_create_channel_submission)
+    app.view("page4_create_channel_submission")(
+        ack=page4_create_channel_submission, lazy=[page4_create_channel_submission_lazy])
     app.event("channel_created")(
         ack=page4_create_channel_setup, lazy=[page4_create_channel_setup_lazy]
     )

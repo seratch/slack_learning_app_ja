@@ -7,3 +7,4 @@ export SLACK_SCOPES=channels:join,channels:manage,channels:read,chat:write,chat:
 export SLACK_INSTALLATION_S3_BUCKET_NAME=
 export SLACK_STATE_S3_BUCKET_NAME=
 export SLACK_LAMBDA_PATH=/default/slack_learning_app_ja
+export SLACK_LANGUAGE=ja

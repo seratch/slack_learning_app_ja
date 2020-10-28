@@ -27,7 +27,9 @@ def build_installation_message_blocks(app_id: str, user_id: str) -> List[dict]:
         {"type": "divider"},
         {
             "type": "section",
-            "text": {"type": "mrkdwn", "text": f"""
+            "text": {
+                "type": "mrkdwn",
+                "text": f"""
 このアプリはこのワークスペースで有効化されました。
 
 これは Slack の <https://api.slack.com/authentication/oauth-v2|OAuth フロー>を経て、このアプリにアクセストークンが付与され、ボットユーザーやこのアプリが提供する機能（ショートカットなど）がワークスペース内に追加されたことを意味します。
@@ -35,12 +37,16 @@ def build_installation_message_blocks(app_id: str, user_id: str) -> List[dict]:
 Slack アプリはこのワークスペースから付与されたアクセストークンを使ってチャンネルにメッセージを投稿したり、モーダルを開いたりします。
 
 このアプリを削除するなどの管理操作は、いつでも<https://my.slack.com/apps/{app_id}|この URL> で行うことができます。
-"""},
+""",
+            },
         },
         {"type": "divider"},
         {
             "type": "section",
-            "text": {"type": "mrkdwn", "text": "メッセージの投稿は基本的な機能です。まずはじめに、このメッセージがどのように投稿されたかを簡単に説明します。"},
+            "text": {
+                "type": "mrkdwn",
+                "text": "メッセージの投稿は基本的な機能です。まずはじめに、このメッセージがどのように投稿されたかを簡単に説明します。",
+            },
         },
         {
             "type": "section",
@@ -169,8 +175,7 @@ def install_completion(args: SuccessArgs):
             channel=installation.user_id,
             text=installation_message_text,
             blocks=build_installation_message_blocks(
-                installation.app_id,
-                installation.user_id
+                installation.app_id, installation.user_id
             ),
         )
         html = render_success_page(

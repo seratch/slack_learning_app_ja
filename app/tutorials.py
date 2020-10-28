@@ -264,7 +264,7 @@ def external_data_source_handler(ack, body):
             "text": {
                 "type": "mrkdwn",
                 "text": """
-ちはみに、上のボタンからの処理がやっていることを簡単に説明しておきます。チャンネルの作成には <https://api.slack.com/methods/conversations.create|conversations.create> という API を使っています。そして、あなたを <https://api.slack.com/methods/conversations.invite|conversations.invite> API を使って作られたチャンネルに招待しています。
+ちなみに、上のボタンからの処理がやっていることを簡単に説明しておきます。チャンネルの作成には <https://api.slack.com/methods/conversations.create|conversations.create> という API を使っています。そして、あなたを <https://api.slack.com/methods/conversations.invite|conversations.invite> API を使って作られたチャンネルに招待しています。
 
 それに加えて <https://api.slack.com/events/channel_created|channel_created> というイベントを <https://api.slack.com/events-api|Events API> を使って購読しています。チャンネルが作成されたら、このアプリ自身が作成したチャンネルであるかをチェックした上でウェルカムメッセージを投稿する、ということを行っています。
 """,
@@ -654,10 +654,10 @@ def page2_modal_submission(ack: Ack, view: dict):
     assignee = values.get("assignee", {}).get("input", {}).get("selected_user")
     priority = (
         values.get("priority", {})
-            .get("input", {})
-            .get("selected_option", {})
-            .get("text", {})
-            .get("text")
+        .get("input", {})
+        .get("selected_option", {})
+        .get("text", {})
+        .get("text")
     )
     deadline = values.get("deadline", {}).get("input", {}).get("selected_date")
     description = values.get("description", {}).get("input", {}).get("value")
@@ -812,7 +812,7 @@ def page4_create_channel_submission_lazy(
                         "text": {"type": "mrkdwn", "text": error_message},
                     }
                 ],
-            }
+            },
         )
         return
 
@@ -836,7 +836,7 @@ def page4_create_channel_submission_lazy(
                     },
                 },
             ],
-        }
+        },
     )
 
 

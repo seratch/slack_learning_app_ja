@@ -69,7 +69,8 @@ def register_listeners(app: App):
     )
 
     app.view("page4_create_channel_submission")(
-        ack=page4_create_channel_submission, lazy=[page4_create_channel_submission_lazy])
+        ack=page4_create_channel_submission, lazy=[page4_create_channel_submission_lazy]
+    )
     app.event("channel_created")(
         ack=page4_create_channel_setup, lazy=[page4_create_channel_setup_lazy]
     )

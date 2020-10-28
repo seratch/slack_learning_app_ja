@@ -7,7 +7,9 @@ from slack_bolt.adapter.aws_lambda.lambda_s3_oauth_flow import LambdaS3OAuthFlow
 from slack_bolt.authorization.authorize import InstallationStoreAuthorize
 from slack_bolt.oauth.callback_options import CallbackOptions
 from slack_bolt.oauth.oauth_settings import OAuthSettings
-from slack_sdk.oauth.installation_store.cacheable_installation_store import CacheableInstallationStore
+from slack_sdk.oauth.installation_store.cacheable_installation_store import (
+    CacheableInstallationStore,
+)
 
 from app.listeners import register_listeners
 from app.onboarding import install_failure, install_completion

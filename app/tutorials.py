@@ -382,7 +382,7 @@ Enterprise Grid に対応した Slack アプリの開発を行う開発者はサ
 • <https://qiita.com/organizations/slack|Qiita 掲載の記事>
 • <https://slack.dev/bolt-js/ja-jp/tutorial/getting-started|Bolt for JavaScript>, <https://slack.dev/java-slack-sdk/guides/ja/|Bolt for Java>
 
-<https://my.slack.com/app|App Directory> には 2,200 以上のアプリが公開されています。ベストプラクティスを知るには、人気のあるアプリがどのような挙動になっているかを研究してみるのもおすすめです。
+<https://my.slack.com/apps|App Directory> には 2,200 以上のアプリが公開されています。ベストプラクティスを知るには、人気のあるアプリがどのような挙動になっているかを研究してみるのもおすすめです。
 
 オープンな開発者コミュニティもあります。<https://join.slack.com/t/community/shared_invite/enQtNzYxNzM5NzU0Mzg3LWFhZjE3ZjY1M2JhM2MzNGNmMmE0Zjc4Y2E5NDc2NGJiODAxNDMzN2Y1MjVlYWU3ZGVlYzhlMDVhNzA0Nzg1OGY|Slack ワークスペース>と<https://slackcommunity.com/|コミュニティサイト>にアクセスしてみてください。
 

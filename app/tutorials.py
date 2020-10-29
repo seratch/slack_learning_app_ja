@@ -562,7 +562,7 @@ Enterprise Grid に対応した Slack アプリの開発を行う開発者はサ
                 "type": "mrkdwn",
                 "text": i18n(
                     """
-Lastly, here are helpful resource to learn further about interactive features in the Slack Platform,.
+Lastly, here are helpful resource to learn further about interactive features in the Slack Platform:
 
 • <https://api.slack.com/|Slack Platform API Ddocuments>
 • <https://medium.com/slack-developer-blog|Slack Platform Blog>

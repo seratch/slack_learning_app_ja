@@ -322,7 +322,7 @@ def external_data_source_handler(ack, body):
 ```
 As you see, the above code has a static array of options. But needless to say, your app can load data from anywhere. Apps can run queries to fetch data in database and/or talk to any backend services. While we used the select menu in Home tabs, the component is available for messages and modals too.
 
-This is a greatly useful feature for business operations. Make use of it in many situations!
+This is a very useful feature for business operations. Make use of it in many situations!
 """,
                     """
 使用する <https://api.slack.com/block-kit|*Block Kit*> の JSON データは以下の様になります。複数選択にしたい場合は `multi_external_select` にするだけです。

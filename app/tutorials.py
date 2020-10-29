@@ -119,7 +119,7 @@ As with the welcome message, you can place <https://api.slack.com/block-kit|*Blo
                     """
 Using <https://api.slack.com/events-api|*Events API*> is the common way to set up and maintain Home tab content. The <https://api.slack.com/events/app_home_opened|*app_home_opened*> event triggers when an end user access Home Tab. Your app can subscribe the event and update the tab for the user. Actually, the event triggered when you accessed this tab for the first time and this app updated the tab quickly.
 
-It's also possible to update Home tabs at any timing apart from end users' access. For instance, your app can update tabs as part of midnight batch processes and/or asking end users to manually click buttons to refresh the contents. In this tutorial app, this app never updates unless you click *Previus* or *Next* after the initial loading.
+It's also possible to update Home tabs at any time regardless of the end users' access. For instance, your app can update tabs as part of midnight batch processes and/or asking end users to manually click buttons to refresh the contents. In this tutorial app, this app never updates unless you click *Previous* or *Next* after the initial loading.
 
 That's all about Home tabs here. Let's go to the next page by clicking the *Next* button.
 """,

@@ -320,7 +320,7 @@ def external_data_source_handler(ack, body):
     else:
         ack(options=all_options)
 ```
-As you see, the above code have a static array of options. But needless to say, your app can load data from anywhere. Apps can run queries to fetch data in database and/or talk to any backend services. While we used the select menu in Home tabs, the component is available for messages and modals too.
+As you see, the above code has a static array of options. But needless to say, your app can load data from anywhere. Apps can run queries to fetch data in database and/or talk to any backend services. While we used the select menu in Home tabs, the component is available for messages and modals too.
 
 This is a greatly useful feature for business operations. Make use of it in many situations!
 """,

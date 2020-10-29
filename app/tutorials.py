@@ -487,7 +487,7 @@ Among the Web APIs that are available at <https://api.slack.com/methods|api.slac
 
 *Audit Logs API*
 
-<https://api.slack.com/admins/audit-logs|Audit Logs API> is available for monitoring various audit events in an Enterprise Grid organization. See the<https://api.slack.com/admins/audit-logs|document> to learn how to use it.
+<https://api.slack.com/admins/audit-logs|Audit Logs API> is available for monitoring various audit events in an Enterprise Grid organization. See the <https://api.slack.com/admins/audit-logs|document> to learn how to use it.
 
 *Discovery API*
 

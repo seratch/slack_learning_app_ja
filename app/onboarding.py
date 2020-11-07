@@ -186,7 +186,7 @@ https://github.com/seratch/slack_learning_app_ja
 
 def render_success_page(app_id: str, team_id: Optional[str]) -> str:
     url = (
-        "slack://open" if team_id is None else f"slack://app?team={team_id}&id={app_id}"
+        "slack://open" if team_id is None else f"slack://app?team={team_id}&id={app_id}&tab=messages"
     )
     main = i18n(
         f"""

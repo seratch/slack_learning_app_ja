@@ -1456,8 +1456,8 @@ def handler(ack, body, client):
     client.chat_postMessage(
         channel=body["channel"]["id"],
         text=i18n(
-            f"We've learnt how to run two types of shortcuts. Go back to <slack://app?team={team_id}&id={app_id}|Home tab> and continue learning more features!",
-            f"ここでは、二種類のショートカットの実行を学びました。<slack://app?team={team_id}&id={app_id}|ホームタブに戻って>、学習の続きをみていきましょう。"
+            f"We've learnt how to run two types of shortcuts. Go back to <slack://app?team={team_id}&id={app_id}&tab=home|Home tab> and continue learning more features!",
+            f"ここでは、二種類のショートカットの実行を学びました。<slack://app?team={team_id}&id={app_id}&tab=home|ホームタブに戻って>、学習の続きをみていきましょう。"
         ),
     )
 

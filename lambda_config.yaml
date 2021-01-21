@@ -42,4 +42,4 @@ environment_variables:
 
 # Build options
 build:
-  source_directories: "app,slack_bolt" # a comma delimited list of directories in your project root that contains source to package.
+  source_directories: "app" # a comma delimited list of directories in your project root that contains source to package.

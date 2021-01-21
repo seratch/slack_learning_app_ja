@@ -1308,7 +1308,7 @@ You can use global shortcuts from the search bear. Thus, the current channel may
                     "type": "section",
                     "text": {
                         "type": "mrkdwn",
-                        "text": """
+                        "text": i18n("""
 If you clicked this shortcut in a channel, the channel should be selected in the above select menu. As this app does, making the input block required is a good way to surely ask end users to tell the place to notify.
 
 The following Python code is a simple listener that handles global shortcut requests.
@@ -1335,6 +1335,31 @@ def handler(ack, body, client):
 
 That's it. To go to the next, submit this modal now!
 """,
+"""
+このショートカットをチャンネルから起動したのであれば、選択状態になっているはずです。このように必須の入力項目にしておけば、チャンネル以外から起動された場合にも通知先のチャンネルを選ぶように強制することができます。
+グローバルショートカットをハンドリングする Python のコードは以下のようになります。
+```
+@app.shortcut("ショートカット作成時に指定した callback_id")
+def handler(ack, body, client):
+    # リクエストに対して 200 OK を返す
+    ack()
+    # views.open API を使ってモーダルを開く
+    client.views_open(
+        # ユーザーアクション毎に trigger_id が発行される
+        # trigger_id なしでモーダルは起動できない
+        trigger_id=body["trigger_id"],
+        # モーダルの view を組み立てて渡す
+        view={
+            "type": "modal",
+            "title": {"type": "plain_text", "text": "タイトル"},
+            "close": {"type": "plain_text", "text": "閉じる"},
+            "blocks": [...]
+        },
+    )
+```
+それでは、このモーダルをこのまま送信してみてください。
+"""
+),
                     },
                 },
             ],
@@ -1377,7 +1402,7 @@ def message_shortcut_handler(ack: Ack):
     ack()
 
 
-def message_shortcut_handler_lazy(body: dict, context: BoltContext, client: WebClient):
+def message_shortcut_handler_lazy(body: dict, context: BoltContext, client: WebClient, logger: Logger):
     client.views_open(
         trigger_id=body["trigger_id"],
         view={
@@ -1450,17 +1475,19 @@ def handler(ack, body, client):
             ],
         },
     )
-    team_id = body["team"]["id"]
-    # https://github.com/slackapi/bolt-python/pull/126
-    app_id = client.bots_info(bot=context.bot_id)["bot"]["app_id"]
-    client.chat_postMessage(
-        channel=body["channel"]["id"],
-        text=i18n(
-            f"We've learnt how to run two types of shortcuts. Go back to <slack://app?team={team_id}&id={app_id}&tab=home|Home tab> and continue learning more features!",
-            f"ここでは、二種類のショートカットの実行を学びました。<slack://app?team={team_id}&id={app_id}&tab=home|ホームタブに戻って>、学習の続きをみていきましょう。"
-        ),
-    )
-
+    try:
+        team_id = context.team_id
+        # https://github.com/slackapi/bolt-python/pull/126
+        app_id = client.bots_info(bot=context.bot_id)["bot"]["app_id"]
+        client.chat_postMessage(
+            channel=body["channel"]["id"],
+            text=i18n(
+                f"We've learnt how to run two types of shortcuts. Go back to <slack://app?team={team_id}&id={app_id}&tab=home|Home tab> and continue learning more features!",
+                f"ここでは、二種類のショートカットの実行を学びました。<slack://app?team={team_id}&id={app_id}&tab=home|ホームタブに戻って>、学習の続きをみていきましょう。"
+            ),
+        )
+    except Exception as e:
+        logger.exception(f"Failed to post a message: {e}")
 
 # --------------------------------------------
 # page 5

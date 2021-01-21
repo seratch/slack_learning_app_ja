@@ -24,6 +24,8 @@ oauth_flow = LambdaS3OAuthFlow(
         callback_options=CallbackOptions(
             success=install_completion, failure=install_failure
         ),
+        # Simpler & v1.0.x compatible mode
+        installation_store_bot_only=True,
     )
 )
 

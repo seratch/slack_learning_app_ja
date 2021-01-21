@@ -2,12 +2,18 @@ import logging
 import os
 
 from slack_bolt import App
+from slack_bolt.oauth.oauth_settings import OAuthSettings
 
 from app.listeners import register_listeners
 
 # デフォルトではローカルファイルに state の情報やインストール情報を書きます
 # 必要に応じて別の実装に差し替えてください（Amazon S3, RDB に対応しています）
-app = App()
+app = App(
+    oauth_settings=OAuthSettings(
+        # Simpler & v1.0.x compatible mode
+        installation_store_bot_only=True
+    )
+)
 register_listeners(app)
 
 from flask import Flask, request

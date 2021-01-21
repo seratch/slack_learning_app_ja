@@ -184,10 +184,22 @@ https://github.com/seratch/slack_learning_app_ja
     ]
 
 
-def render_success_page(app_id: str, team_id: Optional[str]) -> str:
-    url = (
-        "slack://open" if team_id is None else f"slack://app?team={team_id}&id={app_id}&tab=messages"
-    )
+def render_success_page(
+    app_id: str,
+    team_id: Optional[str],
+    is_enterprise_install: Optional[bool] = None,
+    enterprise_url: Optional[str] = None,
+) -> str:
+    if (
+        is_enterprise_install is True
+        and enterprise_url is not None
+        and app_id is not None
+    ):
+        url = f"{enterprise_url}manage/organization/apps/profile/{app_id}/workspaces/add"
+    elif team_id is None or app_id is None:
+        url = "slack://open"
+    else:
+        url = f"slack://app?team={team_id}&id={app_id}"
     main = i18n(
         f"""
 <h2>Thank you!</h2>
@@ -259,7 +271,10 @@ def install_completion(args: SuccessArgs):
             ),
         )
         html = render_success_page(
-            app_id=installation.app_id, team_id=installation.team_id
+            app_id=installation.app_id,
+            team_id=installation.team_id,
+            is_enterprise_install=installation.is_enterprise_install,
+            enterprise_url=installation.enterprise_url,
         )
         return BoltResponse(
             status=200,

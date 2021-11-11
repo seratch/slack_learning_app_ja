@@ -706,7 +706,7 @@ def app_home_opened():
 
 
 def app_home_opened_lazy(event, context: BoltContext, client: WebClient):
-    if event["tab"] == "home" and event.get("view") is None:
+    if event["tab"] == "home":
         client.views_publish(user_id=context.user_id, view=tutorial_view(1))
 
 

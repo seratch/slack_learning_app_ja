@@ -1,3 +1,4 @@
+import logging
 import os
 from typing import List, Optional
 
@@ -257,19 +258,25 @@ body {{
 </html>
 """
 
+logger = logging.getLogger(__name__)
+
 
 def install_completion(args: SuccessArgs):
     installation = args.installation
     client = args.request.context.client
     try:
-        client.chat_postMessage(
-            token=installation.bot_token,
-            channel=installation.user_id,
-            text=installation_message_text,
-            blocks=build_installation_message_blocks(
-                installation.app_id, installation.user_id
-            ),
-        )
+        try:
+            client.chat_postMessage(
+                token=installation.bot_token,
+                channel=installation.user_id,
+                text=installation_message_text,
+                blocks=build_installation_message_blocks(
+                    installation.app_id, installation.user_id
+                ),
+            )
+        except Exception as e:
+            logger.exception(f"Failed to post a welcome message: {e}")
+
         html = render_success_page(
             app_id=installation.app_id,
             team_id=installation.team_id,

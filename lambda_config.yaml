@@ -1,4 +1,4 @@
-egion: ap-northeast-1
+region: ap-northeast-1
 
 function_name: slack_learning_app_ja
 handler: lambda_app.handler
